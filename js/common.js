@@ -2,6 +2,34 @@ $(function() {
 
 	// Custom JS
 
+    $("a.modal-button").click(function(e){
+        e.preventDefault();
+
+        var modal = $(e.currentTarget).data('modal');
+
+        var wnd = $("." + modal).find('.modal-content');
+
+        wnd.css({right: 0})
+
+        $("." + modal).show();
+    });
+
+    $("a.modal-close").click(function(e){
+        e.preventDefault();
+
+        var btn = e.currentTarget;
+
+        var modal = $(btn).closest('.modal');
+
+        var wnd = modal.find('.modal-content');
+
+        var wndWidth = wnd.width();
+
+        wnd.animate({right: "-=" + wndWidth}, 500, function(){
+            modal.fadeOut();
+        });
+    });
+
 	jQuery('img.svg').each(function(){
     var $img = jQuery(this);
     var imgID = $img.attr('id');
